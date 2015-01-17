@@ -1,6 +1,6 @@
 # PaperclipAudioCrop
 
-TODO: Write a gem description
+Paperclip post-processor that generates audio crop by using ffmpeg
 
 ## Installation
 
@@ -20,8 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
 
+class Audio < Asset
+  has_attached_file :attachment,
+    styles: {
+      clip: { offset: 0, duration: 30, } # Cut the first 30 seconds
+    },
+    processors: [:audio_crop]
+end
+
+```
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/paperclip_audio_crop/fork )
