@@ -15,7 +15,7 @@ module Paperclip
       dst = Tempfile.new([@basename, @current_format])
       dst.binmode
       begin
-        success = Paperclip.run("ffmpeg -y -ss #{@offset} -t #{@duration} -i #{src.path} -acodec copy #{dst.path}")
+        success = Paperclip.run("ffmpeg -y -i #{src.path} -acodec copy -t #{@duration} -ss #{@offset} #{dst.path}")
       rescue PaperclipCommandLineError => e
         raise Paperclip::Error, "error while processing audio for #{@file}: #{e}"
       end
